@@ -1,6 +1,6 @@
-# FF14 ジョブランダマイザー
+# 🎰 Job Gacha
 
-4人パーティー用のFF14ジョブランダム割り当てツールです。
+4人パーティー用のMMOゲーム ジョブランダム割り当てツールです。
 
 ## 機能
 - タンク1人、DPS2人、ヒーラー1人の構成でランダムにジョブを割り当て
@@ -8,7 +8,7 @@
 - アクセス制限機能付き
 
 ## 使用方法
-1. パスワードを入力してログイン（デフォルト: `ff14party`）
+1. パスワードを入力してログイン（デフォルト: `jobgacha`）
 2. 4人のプレイヤー名を入力
 3. 「ジョブ割り当て実行」をクリック
 4. 結果を確認後、「再実行」で再度割り当て可能
@@ -55,7 +55,7 @@
 ```
 ├── index.html                    # GitHub Pages用メインファイル
 ├── index-with-password.html      # パスワード保護版
-├── FF14ジョブランダマイザー.html    # 単体版（パスワードなし）
+├── JobGacha.html                 # 単体版（パスワードなし）
 └── README.md                     # このファイル
 ```
 
@@ -72,4 +72,4 @@ const CORRECT_PASSWORD = 'your-new-password';
 ```
 
 ---
-Created for Final Fantasy XIV players
+Created for MMO game players
