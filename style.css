@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1e2e 0%, #2a2a4a 100%);
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #f0c040;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #c0c0c0;
+    margin-bottom: 40px;
+}
+
+.input-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid rgba(240, 192, 64, 0.3);
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+}
+
+.input-section h2 {
+    color: #f0c040;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.name-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    color: #c0c0c0;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 12px 15px;
+    border: 2px solid rgba(240, 192, 64, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #f0c040;
+    box-shadow: 0 0 10px rgba(240, 192, 64, 0.3);
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn.primary {
+    background: linear-gradient(45deg, #f0c040, #ffd700);
+    color: #1e1e2e;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn.primary:hover {
+    background: linear-gradient(45deg, #ffd700, #f0c040);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 192, 64, 0.4);
+}
+
+.btn.secondary {
+    background: linear-gradient(45deg, #4a4a6a, #6a6a8a);
+    color: #fff;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.btn.secondary:hover {
+    background: linear-gradient(45deg, #6a6a8a, #4a4a6a);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 106, 138, 0.4);
+}
+
+.results-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid rgba(240, 192, 64, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.results-section h2 {
+    color: #f0c040;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.assignments {
+    display: grid;
+    gap: 20px;
+}
+
+.assignment {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid;
+}
+
+.assignment.tank {
+    border-color: #4a90e2;
+}
+
+.assignment.dps {
+    border-color: #e74c3c;
+}
+
+.assignment.healer {
+    border-color: #27ae60;
+}
+
+.role-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.role-icon {
+    font-size: 24px;
+}
+
+.role-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.assignment.tank .role-name {
+    color: #4a90e2;
+}
+
+.assignment.dps .role-name {
+    color: #e74c3c;
+}
+
+.assignment.healer .role-name {
+    color: #27ae60;
+}
+
+.assignment-result {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid;
+}
+
+.assignment.tank .assignment-result {
+    border-left-color: #4a90e2;
+}
+
+.assignment.dps .assignment-result {
+    border-left-color: #e74c3c;
+}
+
+.assignment.healer .assignment-result {
+    border-left-color: #27ae60;
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.job-name {
+    font-size: 16px;
+    color: #f0c040;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .name-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .assignment-result {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* アニメーション効果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.results-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.assignment-result {
+    transition: all 0.3s ease;
+}
+
+.assignment-result:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
