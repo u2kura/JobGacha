@@ -279,6 +279,26 @@
             border-left-color: #27ae60;
         }
 
+        .drawing-message {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #a8d5ba;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
         .player-name {
             font-weight: bold;
             font-size: 18px;
@@ -1086,6 +1106,19 @@
                 return;
             }
             
+            // 結果セクションを表示して「抽選中...」メッセージを表示
+            const container = document.getElementById('assignmentsContainer');
+            container.innerHTML = '<div class="drawing-message">🎰 抽選中...</div>';
+            resultsSection.style.display = 'block';
+            
+            // 5秒後に実際の抽選を実行
+            setTimeout(() => {
+                performRandomization();
+            }, 5000);
+        }
+        
+        // 実際のジョブ割り当て処理
+        function performRandomization() {
             // プレイヤー名を取得
             const playerNames = playerInputs.map(input => input.value.trim());
             
