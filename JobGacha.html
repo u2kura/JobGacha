@@ -371,38 +371,6 @@
         .assignment-result:hover {
             background: rgba(255, 255, 255, 0.1);
         }
-
-        /* 演出シーン用アニメーション */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
-        }
-
-        @keyframes countdownPulse {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes revealResult {
-            0% { opacity: 0; transform: scale(0.5); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes slideInResult {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes sparkle {
-            0% { transform: rotate(0deg) translateX(20px) rotate(0deg); opacity: 1; }
-            100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); opacity: 0; }
-        }
-
-        @keyframes confetti {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
     </style>
 </head>
 <body>
@@ -412,11 +380,6 @@
         
         <div class="input-section">
             <h2>メンバー名入力</h2>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <button id="presentationModeToggle" class="presentation-mode-toggle">
-                    🎭 演出モード OFF
-                </button>
-            </div>
             <div class="name-inputs">
                 <div class="input-group">
                     <label for="player1">プレイヤー1:</label>
@@ -537,17 +500,7 @@
         const dps2Result = document.getElementById('dps2-result');
         const healerResult = document.getElementById('healer-result');
 
-        // 演出シーン関連のDOM要素
-        const presentationModeToggle = document.getElementById('presentationModeToggle');
-        const presentationOverlay = document.getElementById('presentationOverlay');
-        const drumrollText = document.getElementById('drumrollText');
-        const countdownNumber = document.getElementById('countdownNumber');
-        const resultReveal = document.getElementById('resultReveal');
-        const presentationResults = document.getElementById('presentationResults');
-        const closePresentationBtn = document.getElementById('closePresentationBtn');
 
-        // 演出モードのフラグ
-        let isPresentationMode = false;
 
         // ランダムな要素を取得する関数
         function getRandomElement(array) {
@@ -644,298 +597,6 @@
             });
         }
 
-        // 演出シーン開始
-        function startPresentationMode() {
-            console.log('演出シーン開始'); // デバッグ用ログ
-            
-            // オーバーレイを表示
-            presentationOverlay.style.display = 'flex';
-            drumrollText.style.display = 'block';
-            countdownNumber.style.display = 'block';
-            resultReveal.style.display = 'none';
-            
-            // ドラムロール音を再生（エラーハンドリング付き）
-            try {
-                playDrumrollSound();
-            } catch (error) {
-                console.log('音響再生エラー:', error);
-            }
-            
-            // カウントダウン演出（2秒後に開始）
-            setTimeout(() => {
-                let countdown = 3;
-                countdownNumber.textContent = countdown;
-                
-                try {
-                    playCountdownSound();
-                } catch (error) {
-                    console.log('カウントダウン音エラー:', error);
-                }
-                
-                const countdownInterval = setInterval(() => {
-                    countdown--;
-                    if (countdown > 0) {
-                        countdownNumber.textContent = countdown;
-                        try {
-                            playCountdownSound();
-                        } catch (error) {
-                            console.log('カウントダウン音エラー:', error);
-                        }
-                    } else {
-                        clearInterval(countdownInterval);
-                        countdownNumber.textContent = '';
-                        showPresentationResults();
-                    }
-                }, 1000);
-            }, 2000);
-        }
-
-        // 演出結果表示
-        function showPresentationResults() {
-            drumrollText.style.display = 'none';
-            countdownNumber.style.display = 'none';
-            
-            // ジョブ割り当てを実行
-            const playerNames = playerInputs.map(input => input.value.trim());
-            const shuffledPlayers = shuffleArray(playerNames);
-            const selectedTank = getRandomElement(jobs.tanks);
-            const selectedHealer = getRandomElement(jobs.healers);
-            const shuffledDPS = shuffleArray(jobs.dps);
-            const selectedDPS1 = shuffledDPS[0];
-            const selectedDPS2 = shuffledDPS[1];
-            
-            // 勝利音を再生
-            playVictorySound();
-            
-            // 結果を表示
-            resultReveal.style.display = 'block';
-            
-            // 演出用結果カードを作成
-            const results = [
-                { role: 'タンク', icon: '🛡️', player: shuffledPlayers[0], job: selectedTank },
-                { role: 'DPS', icon: '⚔️', player: shuffledPlayers[1], job: selectedDPS1 },
-                { role: 'DPS', icon: '⚔️', player: shuffledPlayers[2], job: selectedDPS2 },
-                { role: 'ヒーラー', icon: '❤️', player: shuffledPlayers[3], job: selectedHealer }
-            ];
-            
-            presentationResults.innerHTML = '';
-            
-            // 順次結果を表示
-            results.forEach((result, index) => {
-                setTimeout(() => {
-                    const card = document.createElement('div');
-                    card.className = 'role-result-card';
-                    card.style.animationDelay = `${index * 0.2}s`;
-                    card.innerHTML = `
-                        <div style="font-size: 24px; margin-bottom: 10px;">
-                            <span style="margin-right: 10px;">${result.icon}</span>
-                            <span style="color: #ffd700; font-weight: bold;">${result.role}</span>
-                        </div>
-                        <div style="font-size: 20px; color: white; margin-bottom: 5px;">${result.player}</div>
-                        <div style="font-size: 18px; color: #87ceeb;">${result.job}</div>
-                    `;
-                    presentationResults.appendChild(card);
-                    
-                    // キラキラエフェクト追加
-                    createSparkleEffect(card);
-                }, index * 500);
-            });
-            
-            // 通常の結果画面にも結果を設定
-            displayResult(tankResult, shuffledPlayers[0], selectedTank);
-            displayResult(dps1Result, shuffledPlayers[1], selectedDPS1);
-            displayResult(dps2Result, shuffledPlayers[2], selectedDPS2);
-            displayResult(healerResult, shuffledPlayers[3], selectedHealer);
-            
-            // 紙吹雪エフェクト
-            setTimeout(() => {
-                createConfetti();
-            }, 1000);
-        }
-            const selectedDPS1 = shuffledDPS[0];
-            const selectedDPS2 = shuffledDPS[1];
-
-            // 演出用結果HTML生成
-            const assignments = [
-                { player: shuffledPlayers[0], job: selectedTank, role: 'タンク', icon: '🛡️' },
-                { player: shuffledPlayers[1], job: selectedDPS1, role: 'DPS', icon: '⚔️' },
-                { player: shuffledPlayers[2], job: selectedDPS2, role: 'DPS', icon: '⚔️' },
-                { player: shuffledPlayers[3], job: selectedHealer, role: 'ヒーラー', icon: '❤️' }
-            ];
-
-            presentationResults.innerHTML = assignments.map((assignment, index) => `
-                <div class="role-result-card" style="animation-delay: ${index * 0.3}s;">
-                    <div style="font-size: 24px; color: #ffd700; font-weight: bold;">
-                        ${assignment.icon} ${assignment.role}
-                    </div>
-                    <div style="font-size: 32px; margin: 15px 0; color: white;">
-                        ${assignment.player}
-                    </div>
-                    <div style="font-size: 28px; color: #64b5f6; font-weight: bold;">
-                        ${assignment.job}
-                    </div>
-                </div>
-            `).join('');
-
-            // 結果を表示
-            resultReveal.style.display = 'block';
-            createConfettiEffect();
-            playVictorySound();
-
-            // 通常の結果も更新
-            displayResult(tankResult, shuffledPlayers[0], selectedTank);
-            displayResult(dps1Result, shuffledPlayers[1], selectedDPS1);
-            displayResult(dps2Result, shuffledPlayers[2], selectedDPS2);
-            displayResult(healerResult, shuffledPlayers[3], selectedHealer);
-        }
-
-        // キラキラエフェクト
-        function createSparkleEffect(element) {
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle-effect';
-                    sparkle.style.left = Math.random() * element.offsetWidth + 'px';
-                    sparkle.style.top = Math.random() * element.offsetHeight + 'px';
-                    element.appendChild(sparkle);
-                    
-                    // 2秒後に削除
-                    setTimeout(() => {
-                        if (sparkle.parentNode) {
-                            sparkle.parentNode.removeChild(sparkle);
-                        }
-                    }, 2000);
-                }, i * 200);
-            }
-        }
-
-        // 紙吹雪エフェクト
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
-            
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                    document.body.appendChild(confetti);
-                    
-                    // アニメーション完了後に削除
-                    setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.parentNode.removeChild(confetti);
-                        }
-                    }, 3000);
-                }, i * 50);
-            }
-        }
-
-        // 紙吹雪エフェクト
-        function createConfettiEffect() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                presentationOverlay.appendChild(confetti);
-                
-                // 3秒後に削除
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-
-        // 演出モード切り替え
-        function togglePresentationMode() {
-            isPresentationMode = !isPresentationMode;
-            presentationModeToggle.textContent = isPresentationMode ? 
-                '🎭 演出モード ON' : '🎭 演出モード OFF';
-            presentationModeToggle.classList.toggle('active', isPresentationMode);
-        }
-
-        // 音響効果関数群
-        function playCountdownSound() {
-            try {
-                // カウントダウン音を再生
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-                
-                oscillator.start();
-                oscillator.stop(audioContext.currentTime + 0.1);
-            } catch (error) {
-                console.log('音響再生エラー:', error);
-            }
-        }
-
-        function playVictorySound() {
-            try {
-                // 勝利音を再生
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                
-                // メロディーの音程
-                const notes = [523.25, 659.25, 783.99, 1046.50]; // C, E, G, C
-                
-                notes.forEach((frequency, index) => {
-                    const oscillator = audioContext.createOscillator();
-                    const gainNode = audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
-                    
-                    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime + index * 0.15);
-                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime + index * 0.15);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + index * 0.15 + 0.3);
-                    
-                    oscillator.start(audioContext.currentTime + index * 0.15);
-                    oscillator.stop(audioContext.currentTime + index * 0.15 + 0.3);
-                });
-            } catch (error) {
-                console.log('勝利音再生エラー:', error);
-            }
-        }
-
-        function playDrumrollSound() {
-            try {
-                // ドラムロール音を再生
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        const oscillator = audioContext.createOscillator();
-                        const gainNode = audioContext.createGain();
-                        
-                        oscillator.connect(gainNode);
-                        gainNode.connect(audioContext.destination);
-                        
-                        oscillator.frequency.setValueAtTime(100 + Math.random() * 50, audioContext.currentTime);
-                        oscillator.type = 'sawtooth';
-                        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
-                        
-                        oscillator.start();
-                        oscillator.stop(audioContext.currentTime + 0.05);
-                    }, i * 50);
-                }
-            } catch (error) {
-                console.log('ドラムロール音再生エラー:', error);
-            }
-        }
-
         // リセット関数（名前は保持したまま結果を非表示）
         function resetResults() {
             resultsSection.style.display = 'none';
@@ -947,12 +608,6 @@
         // イベントリスナーの設定
         randomizeBtn.addEventListener('click', randomizeJobs);
         resetBtn.addEventListener('click', resetResults);
-        presentationModeToggle.addEventListener('click', togglePresentationMode);
-        closePresentationBtn.addEventListener('click', () => {
-            presentationOverlay.style.display = 'none';
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
 
         // Enterキーでジョブ割り当て実行
         playerInputs.forEach((input, index) => {
@@ -974,18 +629,5 @@
             playerInputs[0].focus();
         });
     </script>
-
-    <!-- 演出シーン用オーバーレイ -->
-    <div id="presentationOverlay" class="presentation-overlay">
-        <div class="drumroll-container">
-            <div id="drumrollText" class="drumroll-text">🥁 ドラムロール中... 🥁</div>
-            <div id="countdownNumber" class="countdown-number"></div>
-            <div id="resultReveal" class="result-reveal" style="display: none;">
-                <h1 style="color: #ffd700; margin-bottom: 30px; font-size: 36px;">✨ ジョブ割り当て結果発表 ✨</h1>
-                <div id="presentationResults"></div>
-                <button id="closePresentationBtn" class="btn primary" style="margin-top: 30px;">結果を確認</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
