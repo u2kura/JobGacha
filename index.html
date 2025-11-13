@@ -98,7 +98,7 @@
         }
 
         .input-section {
-            background: rgba(30, 30, 30, 0.85);
+            background: rgba(30, 30, 30, 0.65);
             padding: 30px;
             border-radius: 20px;
             border: 3px solid #a8d5ba;
@@ -189,7 +189,7 @@
         }
 
         .results-section {
-            background: rgba(30, 30, 30, 0.85);
+            background: rgba(30, 30, 30, 0.65);
             padding: 30px;
             border-radius: 20px;
             border: 3px solid #a8d5ba;
@@ -621,27 +621,38 @@
             <p class="subtitle">4人パーティー用（タンク1、DPS2、ヒーラー1）</p>
             
             <div class="input-section">
-                <h2>メンバー名入力</h2>
+                <h2>Set Player</h2>
+                
+                <!-- DD編成選択 -->
+                <div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <label for="partyComposition" style="color: #a8d5ba; font-weight: 600; font-size: 16px; margin: 0;">編成:</label>
+                    <select id="partyComposition" style="padding: 10px 20px; border: 2px solid #a8d5ba; background: rgba(20, 20, 20, 0.7); color: #fff; border-radius: 12px; font-size: 16px; cursor: pointer; min-width: 200px;">
+                        <option value="1-1-2" selected>T1 H1 D2 (標準)</option>
+                        <option value="2-1-1">T2 H1 D1</option>
+                        <option value="1-0-3">T1 D3</option>
+                    </select>
+                </div>
+                
                 <div class="name-inputs">
                     <div class="input-group">
                         <label for="player1">Player 1:</label>
                         <input type="text" id="player1" placeholder="Player名を入力">
-                        <button class="job-settings-btn" data-player="0">🎯 ジョブ設定</button>
+                        <button class="job-settings-btn" data-player="0">⚙️ ジョブ設定</button>
                     </div>
                     <div class="input-group">
                         <label for="player2">Player 2:</label>
                         <input type="text" id="player2" placeholder="Player名を入力">
-                        <button class="job-settings-btn" data-player="1">🎯 ジョブ設定</button>
+                        <button class="job-settings-btn" data-player="1">⚙️ ジョブ設定</button>
                     </div>
                     <div class="input-group">
                         <label for="player3">Player 3:</label>
                         <input type="text" id="player3" placeholder="Player名を入力">
-                        <button class="job-settings-btn" data-player="2">🎯 ジョブ設定</button>
+                        <button class="job-settings-btn" data-player="2">⚙️ ジョブ設定</button>
                     </div>
                     <div class="input-group">
                         <label for="player4">Player 4:</label>
                         <input type="text" id="player4" placeholder="Player名を入力">
-                        <button class="job-settings-btn" data-player="3">🎯 ジョブ設定</button>
+                        <button class="job-settings-btn" data-player="3">⚙️ ジョブ設定</button>
                     </div>
                 </div>
                 <button id="randomizeBtn" class="btn primary">実行</button>
@@ -649,43 +660,8 @@
 
             <div id="results" class="results-section" style="display: none;">
                 <h2>ジョブ割り当て結果</h2>
-                <div class="assignments">
-                    <div class="assignment tank">
-                        <div class="role-header">
-                            <span class="role-icon">🛡️</span>
-                            <span class="role-name">タンク</span>
-                        </div>
-                        <div id="tank-result" class="assignment-result">
-                            <span class="player-name"></span>
-                            <span class="job-name"></span>
-                        </div>
-                    </div>
-
-                    <div class="assignment dps">
-                        <div class="role-header">
-                            <span class="role-icon">⚔️</span>
-                            <span class="role-name">DPS</span>
-                        </div>
-                        <div id="dps1-result" class="assignment-result">
-                            <span class="player-name"></span>
-                            <span class="job-name"></span>
-                        </div>
-                        <div id="dps2-result" class="assignment-result">
-                            <span class="player-name"></span>
-                            <span class="job-name"></span>
-                        </div>
-                    </div>
-
-                    <div class="assignment healer">
-                        <div class="role-header">
-                            <span class="role-icon">❤️</span>
-                            <span class="role-name">ヒーラー</span>
-                        </div>
-                        <div id="healer-result" class="assignment-result">
-                            <span class="player-name"></span>
-                            <span class="job-name"></span>
-                        </div>
-                    </div>
+                <div class="assignments" id="assignmentsContainer">
+                    <!-- 編成に応じて動的に生成 -->
                 </div>
 
                 <button id="resetBtn" class="btn secondary">再実行</button>
@@ -826,12 +802,6 @@
             document.getElementById('player3'),
             document.getElementById('player4')
         ];
-
-        // 結果表示要素
-        const tankResult = document.getElementById('tank-result');
-        const dps1Result = document.getElementById('dps1-result');
-        const dps2Result = document.getElementById('dps2-result');
-        const healerResult = document.getElementById('healer-result');
 
         // ジョブ設定モーダル関連
         const jobSettingsModal = document.getElementById('jobSettingsModal');
@@ -1074,7 +1044,7 @@
         }
 
         function displayEvaluation(evaluation) {
-            const resultDiv = document.getElementById('result');
+            const container = document.getElementById('assignmentsContainer');
             
             // スコアに応じた総合評価
             let overallRating = '';
@@ -1088,20 +1058,22 @@
                 overallRating = '🎲 CHALLENGE PARTY! チャレンジングなパーティです！';
             }
 
-            const evaluationHTML = `
-                <div class="evaluation-section" style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; backdrop-filter: blur(5px);">
-                    <h3 style="color: #ffd700; margin-bottom: 10px;">🎯 パーティ相性評価</h3>
-                    <div style="font-size: 18px; font-weight: bold; color: #ffd700; margin-bottom: 15px;">${overallRating}</div>
-                    ${evaluation.comments.map(comment => `<div style="margin: 8px 0; padding: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 5px;">${comment}</div>`).join('')}
-                    <div style="margin-top: 15px; text-align: center;">
-                        <button onclick="showDetailedStrategy()" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer;">
-                            🎯 攻略のヒント
-                        </button>
-                    </div>
+            const evaluationDiv = document.createElement('div');
+            evaluationDiv.className = 'evaluation-section';
+            evaluationDiv.style.cssText = 'margin-top: 20px; padding: 15px; background: rgba(168, 213, 186, 0.15); border: 2px solid #a8d5ba; border-radius: 15px;';
+            
+            evaluationDiv.innerHTML = `
+                <h3 style="color: #a8d5ba; margin-bottom: 10px; font-weight: 700;">🎯 パーティ相性評価</h3>
+                <div style="font-size: 18px; font-weight: bold; color: #a8d5ba; margin-bottom: 15px;">${overallRating}</div>
+                ${evaluation.comments.map(comment => `<div style="margin: 8px 0; padding: 8px; background: rgba(168, 213, 186, 0.1); border-radius: 8px; color: #fff;">${comment}</div>`).join('')}
+                <div style="margin-top: 15px; text-align: center;">
+                    <button onclick="showDetailedStrategy()" style="background: linear-gradient(135deg, #7ab893 0%, #9ac9ad 100%); color: #1a1a1a; border: none; padding: 8px 16px; border-radius: 15px; cursor: pointer; font-weight: 600;">
+                        🎯 攻略のヒント
+                    </button>
                 </div>
             `;
             
-            resultDiv.innerHTML += evaluationHTML;
+            container.appendChild(evaluationDiv);
         }
 
         function showDetailedStrategy() {
@@ -1117,8 +1089,16 @@
             // プレイヤー名を取得
             const playerNames = playerInputs.map(input => input.value.trim());
             
-            // 各ロール（タンク、DPS×2、ヒーラー）にプレイヤーを割り当て
-            const roles = ['tank', 'dps1', 'dps2', 'healer'];
+            // 編成を取得
+            const composition = document.getElementById('partyComposition').value;
+            const [tankCount, healerCount, dpsCount] = composition.split('-').map(Number);
+            
+            // ロールの配列を編成に応じて生成
+            const roles = [];
+            for (let i = 0; i < tankCount; i++) roles.push('tank');
+            for (let i = 0; i < healerCount; i++) roles.push('healer');
+            for (let i = 0; i < dpsCount; i++) roles.push('dps');
+            
             const shuffledPlayers = shuffleArray([0, 1, 2, 3]); // プレイヤーのインデックスをシャッフル
             
             const assignments = [];
@@ -1161,17 +1141,47 @@
                 });
             }
             
-            // 結果を表示
+            // 結果コンテナをクリアして編成に応じて動的に生成
+            const container = document.getElementById('assignmentsContainer');
+            container.innerHTML = '';
+            
+            // ロールごとにグループ化
+            const roleGroups = {
+                tank: { icon: '🛡️', name: 'タンク', assignments: [] },
+                healer: { icon: '❤️', name: 'ヒーラー', assignments: [] },
+                dps: { icon: '⚔️', name: 'DPS', assignments: [] }
+            };
+            
             assignments.forEach(assignment => {
-                if (assignment.role === 'tank') {
-                    displayResult(tankResult, assignment.playerName, assignment.job);
-                } else if (assignment.role === 'dps1') {
-                    displayResult(dps1Result, assignment.playerName, assignment.job);
-                } else if (assignment.role === 'dps2') {
-                    displayResult(dps2Result, assignment.playerName, assignment.job);
-                } else if (assignment.role === 'healer') {
-                    displayResult(healerResult, assignment.playerName, assignment.job);
-                }
+                roleGroups[assignment.role].assignments.push(assignment);
+            });
+            
+            // 各ロールのHTML生成
+            ['tank', 'healer', 'dps'].forEach(roleKey => {
+                const roleData = roleGroups[roleKey];
+                if (roleData.assignments.length === 0) return;
+                
+                const roleDiv = document.createElement('div');
+                roleDiv.className = `assignment ${roleKey}`;
+                
+                let roleHTML = `
+                    <div class="role-header">
+                        <span class="role-icon">${roleData.icon}</span>
+                        <span class="role-name">${roleData.name}</span>
+                    </div>
+                `;
+                
+                roleData.assignments.forEach(assignment => {
+                    roleHTML += `
+                        <div class="assignment-result">
+                            <span class="player-name">${assignment.playerName}</span>
+                            <span class="job-name">${assignment.job}</span>
+                        </div>
+                    `;
+                });
+                
+                roleDiv.innerHTML = roleHTML;
+                container.appendChild(roleDiv);
             });
             
             // 結果セクションを表示
