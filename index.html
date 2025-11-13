@@ -13,7 +13,14 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e1e2e 0%, #2a2a4a 100%);
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('./Pict/dungeon_entrance01.png'),
+                linear-gradient(135deg, #1e1e2e 0%, #2a2a4a 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: #fff;
             min-height: 100vh;
             padding: 20px;
@@ -32,14 +39,15 @@
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.6);
             padding: 40px;
             border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.3);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(240, 192, 64, 0.4);
+            backdrop-filter: blur(15px);
             text-align: center;
             width: 100%;
             max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .login-box h2 {
@@ -86,12 +94,13 @@
         }
 
         .input-section {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.6);
             padding: 30px;
             border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.3);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(240, 192, 64, 0.4);
+            backdrop-filter: blur(15px);
             margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .input-section h2 {
@@ -173,11 +182,12 @@
         }
 
         .results-section {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.6);
             padding: 30px;
             border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.3);
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(240, 192, 64, 0.4);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .results-section h2 {
@@ -346,6 +356,224 @@
         .assignment-result:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
+        /* ジョブ設定ボタン */
+        .job-settings-btn {
+            background: linear-gradient(45deg, #6a5acd, #9370db);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .job-settings-btn:hover {
+            background: linear-gradient(45deg, #9370db, #6a5acd);
+            transform: translateY(-1px);
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.85);
+            margin: 5% auto;
+            padding: 0;
+            border: 2px solid rgba(240, 192, 64, 0.4);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(240, 192, 64, 0.2);
+        }
+
+        .modal-header h3 {
+            color: #f0c040;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #f0c040;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(240, 192, 64, 0.2);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .notice-section {
+            margin-bottom: 25px;
+        }
+
+        .notice-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .notice-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .notice-text {
+            color: #ffc107;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .notice-text strong {
+            color: #fff;
+        }
+
+        .job-category {
+            margin-bottom: 30px;
+        }
+
+        .job-category h4 {
+            color: #f0c040;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .job-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .job-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .job-checkbox:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .job-checkbox input[type="checkbox"] {
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .job-checkbox label {
+            color: #fff;
+            cursor: pointer;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .notice-box {
+                padding: 12px;
+                gap: 10px;
+            }
+
+            .notice-text {
+                font-size: 13px;
+            }
+
+            .job-checkboxes {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .job-settings-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -372,20 +600,24 @@
                 <h2>メンバー名入力</h2>
                 <div class="name-inputs">
                     <div class="input-group">
-                        <label for="player1">プレイヤー1:</label>
-                        <input type="text" id="player1" placeholder="プレイヤー名を入力">
+                        <label for="player1">Player 1:</label>
+                        <input type="text" id="player1" placeholder="Player名を入力">
+                        <button class="job-settings-btn" data-player="0">🎯 ジョブ設定</button>
                     </div>
                     <div class="input-group">
-                        <label for="player2">プレイヤー2:</label>
-                        <input type="text" id="player2" placeholder="プレイヤー名を入力">
+                        <label for="player2">Player 2:</label>
+                        <input type="text" id="player2" placeholder="Player名を入力">
+                        <button class="job-settings-btn" data-player="1">🎯 ジョブ設定</button>
                     </div>
                     <div class="input-group">
-                        <label for="player3">プレイヤー3:</label>
-                        <input type="text" id="player3" placeholder="プレイヤー名を入力">
+                        <label for="player3">Player 3:</label>
+                        <input type="text" id="player3" placeholder="Player名を入力">
+                        <button class="job-settings-btn" data-player="2">🎯 ジョブ設定</button>
                     </div>
                     <div class="input-group">
-                        <label for="player4">プレイヤー4:</label>
-                        <input type="text" id="player4" placeholder="プレイヤー名を入力">
+                        <label for="player4">Player 4:</label>
+                        <input type="text" id="player4" placeholder="Player名を入力">
+                        <button class="job-settings-btn" data-player="3">🎯 ジョブ設定</button>
                     </div>
                 </div>
                 <button id="randomizeBtn" class="btn primary">ジョブ割り当て実行</button>
@@ -434,6 +666,45 @@
 
                 <button id="resetBtn" class="btn secondary">再実行</button>
             </div>
+
+            <!-- ジョブ設定モーダル -->
+            <div id="jobSettingsModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Player のジョブ設定</h3>
+                        <button class="close-btn" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="notice-section">
+                            <div class="notice-box">
+                                <span class="notice-icon">⚠️</span>
+                                <div class="notice-text">
+                                    <strong>重要：</strong>各ロール（タンク、DPS、ヒーラー）で最低1つずつジョブを選択してください。<br>
+                                    すべてのロールでジョブが未選択の場合、抽選を実行できません。
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="job-category">
+                            <h4>🛡️ タンク</h4>
+                            <div class="job-checkboxes" id="tankCheckboxes"></div>
+                        </div>
+                        <div class="job-category">
+                            <h4>⚔️ DPS</h4>
+                            <div class="job-checkboxes" id="dpsCheckboxes"></div>
+                        </div>
+                        <div class="job-category">
+                            <h4>❤️ ヒーラー</h4>
+                            <div class="job-checkboxes" id="healerCheckboxes"></div>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn secondary" id="selectAllBtn">全選択</button>
+                            <button class="btn secondary" id="deselectAllBtn">全解除</button>
+                            <button class="btn primary" id="saveJobSettings">設定保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -475,6 +746,38 @@
             ]
         };
 
+        // 各プレイヤーのジョブ設定を保存する配列（デフォルトは全ジョブ可能）
+        let playerJobSettings = [
+            { tanks: [...jobs.tanks], dps: [...jobs.dps], healers: [...jobs.healers] },
+            { tanks: [...jobs.tanks], dps: [...jobs.dps], healers: [...jobs.healers] },
+            { tanks: [...jobs.tanks], dps: [...jobs.dps], healers: [...jobs.healers] },
+            { tanks: [...jobs.tanks], dps: [...jobs.dps], healers: [...jobs.healers] }
+        ];
+
+        let currentPlayerIndex = 0; // 現在設定中のプレイヤーのインデックス
+
+        // ジョブ相性評価データ
+        const jobCombos = {
+            perfect: [
+                { combo: ['ナイト', '白魔道士'], comment: '🌟 完璧な守護コンビ！安定感抜群です！' },
+                { combo: ['戦士', '学者'], comment: '🔥 バーサーカー＆戦術家！攻守のバランスが最高！' },
+                { combo: ['侍', '忍者'], comment: '⚔️ 和の心！伝統的な武士道コンビ！' },
+                { combo: ['黒魔道士', '赤魔道士'], comment: '🎭 魔法使い同盟！魔法の饗宴が始まります！' },
+                { combo: ['踊り子', '吟遊詩人'], comment: '🎵 芸術家デュオ！パーティを華やかに彩ります！' }
+            ],
+            interesting: [
+                { combo: ['暗黒騎士', '賢者'], comment: '🌙 闇と光の共演！対照的でありながら完璧な調和！' },
+                { combo: ['機工士', 'ピクトマンサー'], comment: '🎨 技術と芸術！近代とクラシックの融合！' },
+                { combo: ['リーパー', '竜騎士'], comment: '💀 死神と竜使い！ダークファンタジーの世界観！' },
+                { combo: ['ヴァイパー', '侍'], comment: '🐍 毒蛇と武士！東洋の武術対決！' }
+            ],
+            funny: [
+                { combo: ['ガンブレイカー', '機工士'], comment: '🔫 ガンマニア集合！火器の専門家チーム！' },
+                { combo: ['モンク', 'リーパー'], comment: '👊 拳聖vs死神！格闘技vs魔法の異色対決！' },
+                { combo: ['占星術師', 'ピクトマンサー'], comment: '🔮 星読みと絵描き！芸術的なスピリチュアルコンビ！' }
+            ]
+        };
+
         // DOM要素の取得
         const loginScreen = document.getElementById('loginScreen');
         const mainContent = document.getElementById('mainContent');
@@ -500,6 +803,18 @@
         const dps1Result = document.getElementById('dps1-result');
         const dps2Result = document.getElementById('dps2-result');
         const healerResult = document.getElementById('healer-result');
+
+        // ジョブ設定モーダル関連
+        const jobSettingsModal = document.getElementById('jobSettingsModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModal = document.getElementById('closeModal');
+        const tankCheckboxes = document.getElementById('tankCheckboxes');
+        const dpsCheckboxes = document.getElementById('dpsCheckboxes');
+        const healerCheckboxes = document.getElementById('healerCheckboxes');
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        const deselectAllBtn = document.getElementById('deselectAllBtn');
+        const saveJobSettings = document.getElementById('saveJobSettings');
+        const jobSettingsBtns = document.querySelectorAll('.job-settings-btn');
 
         // ログイン機能
         function checkPassword() {
@@ -549,6 +864,86 @@
             return shuffled;
         }
 
+        // ジョブ設定モーダル関連の関数
+        function createJobCheckboxes(container, jobList, category) {
+            container.innerHTML = '';
+            jobList.forEach(job => {
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'job-checkbox';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `${category}-${job}-${currentPlayerIndex}`;
+                checkbox.value = job;
+                checkbox.checked = playerJobSettings[currentPlayerIndex][category].includes(job);
+                
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = job;
+                
+                checkboxDiv.appendChild(checkbox);
+                checkboxDiv.appendChild(label);
+                container.appendChild(checkboxDiv);
+            });
+        }
+
+        function openJobSettings(playerIndex) {
+            currentPlayerIndex = playerIndex;
+            const playerName = playerInputs[playerIndex].value.trim() || `Player ${playerIndex + 1}`;
+            modalTitle.textContent = `${playerName} のジョブ設定`;
+            
+            createJobCheckboxes(tankCheckboxes, jobs.tanks, 'tanks');
+            createJobCheckboxes(dpsCheckboxes, jobs.dps, 'dps');
+            createJobCheckboxes(healerCheckboxes, jobs.healers, 'healers');
+            
+            jobSettingsModal.style.display = 'block';
+        }
+
+        function closeJobSettingsModal() {
+            jobSettingsModal.style.display = 'none';
+        }
+
+        function selectAllJobs() {
+            const allCheckboxes = jobSettingsModal.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => checkbox.checked = true);
+        }
+
+        function deselectAllJobs() {
+            const allCheckboxes = jobSettingsModal.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => checkbox.checked = false);
+        }
+
+        function saveCurrentJobSettings() {
+            const tankCheckboxes = jobSettingsModal.querySelectorAll('#tankCheckboxes input[type="checkbox"]');
+            const dpsCheckboxes = jobSettingsModal.querySelectorAll('#dpsCheckboxes input[type="checkbox"]');
+            const healerCheckboxes = jobSettingsModal.querySelectorAll('#healerCheckboxes input[type="checkbox"]');
+            
+            playerJobSettings[currentPlayerIndex].tanks = Array.from(tankCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+                
+            playerJobSettings[currentPlayerIndex].dps = Array.from(dpsCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+                
+            playerJobSettings[currentPlayerIndex].healers = Array.from(healerCheckboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
+            
+            closeJobSettingsModal();
+            
+            // 設定が保存されたことを視覚的にフィードバック
+            const btn = document.querySelector(`[data-player="${currentPlayerIndex}"]`);
+            const originalText = btn.textContent;
+            btn.textContent = '✅ 設定済み';
+            btn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(45deg, #6a5acd, #9370db)';
+            }, 2000);
+        }
+
         // 入力検証関数
         function validateInputs() {
             const playerNames = playerInputs.map(input => input.value.trim());
@@ -556,7 +951,7 @@
             // 空の入力をチェック
             for (let i = 0; i < playerNames.length; i++) {
                 if (playerNames[i] === '') {
-                    alert(`プレイヤー${i + 1}の名前を入力してください。`);
+                    alert(`Player ${i + 1}の名前を入力してください。`);
                     playerInputs[i].focus();
                     return false;
                 }
@@ -565,8 +960,32 @@
             // 重複する名前をチェック
             const uniqueNames = new Set(playerNames);
             if (uniqueNames.size !== playerNames.length) {
-                alert('重複するプレイヤー名があります。異なる名前を入力してください。');
+                alert('重複するPlayer名があります。異なる名前を入力してください。');
                 return false;
+            }
+            
+            // 各プレイヤーのジョブ設定をチェック
+            for (let i = 0; i < playerNames.length; i++) {
+                const playerName = playerNames[i];
+                const settings = playerJobSettings[i];
+                
+                // タンクジョブの確認
+                if (settings.tanks.length === 0) {
+                    alert(`${playerName} はタンクジョブを最低1つ選択してください。\n🎯 ジョブ設定ボタンから設定してください。`);
+                    return false;
+                }
+                
+                // DPSジョブの確認
+                if (settings.dps.length === 0) {
+                    alert(`${playerName} はDPSジョブを最低1つ選択してください。\n🎯 ジョブ設定ボタンから設定してください。`);
+                    return false;
+                }
+                
+                // ヒーラージョブの確認
+                if (settings.healers.length === 0) {
+                    alert(`${playerName} はヒーラージョブを最低1つ選択してください。\n🎯 ジョブ設定ボタンから設定してください。`);
+                    return false;
+                }
             }
             
             return true;
@@ -581,6 +1000,85 @@
             jobNameSpan.textContent = jobName;
         }
 
+        // ジョブ相性評価機能
+        function evaluateCombo(player1Job, player2Job, player3Job, player4Job) {
+            const allJobs = [player1Job, player2Job, player3Job, player4Job];
+            let evaluation = {
+                score: 0,
+                comments: []
+            };
+
+            // 全てのコンボタイプをチェック
+            ['perfect', 'interesting', 'funny'].forEach(type => {
+                jobCombos[type].forEach(comboData => {
+                    const combo = comboData.combo;
+                    // 2つのジョブがパーティに含まれているかチェック
+                    if (combo.every(job => allJobs.includes(job))) {
+                        evaluation.comments.push(comboData.comment);
+                        if (type === 'perfect') evaluation.score += 3;
+                        else if (type === 'interesting') evaluation.score += 2;
+                        else evaluation.score += 1;
+                    }
+                });
+            });
+
+            // 基本的なロールバランス評価
+            const tankJobs = ['ナイト', '戦士', 'ガンブレイカー', '暗黒騎士'];
+            const healerJobs = ['白魔道士', '学者', '占星術師', '賢者'];
+            const dpsJobs = jobs.filter(job => !tankJobs.includes(job) && !healerJobs.includes(job));
+
+            const tankCount = allJobs.filter(job => tankJobs.includes(job)).length;
+            const healerCount = allJobs.filter(job => healerJobs.includes(job)).length;
+            const dpsCount = allJobs.filter(job => dpsJobs.includes(job)).length;
+
+            if (tankCount === 1 && healerCount === 1 && dpsCount === 2) {
+                evaluation.score += 2;
+                evaluation.comments.unshift('✅ 完璧なロールバランス！理想的なパーティ構成です！');
+            } else if (tankCount >= 1 && healerCount >= 1) {
+                evaluation.score += 1;
+                evaluation.comments.unshift('⚖️ バランスの取れたパーティです');
+            } else {
+                evaluation.comments.unshift('⚠️ ロールバランスに注意！冒険には工夫が必要かも...');
+            }
+
+            return evaluation;
+        }
+
+        function displayEvaluation(evaluation) {
+            const resultDiv = document.getElementById('result');
+            
+            // スコアに応じた総合評価
+            let overallRating = '';
+            if (evaluation.score >= 5) {
+                overallRating = '🏆 LEGENDARY PARTY! 伝説のパーティです！';
+            } else if (evaluation.score >= 3) {
+                overallRating = '⭐ GREAT PARTY! 素晴らしいパーティです！';
+            } else if (evaluation.score >= 1) {
+                overallRating = '👍 GOOD PARTY! 良いパーティです！';
+            } else {
+                overallRating = '🎲 CHALLENGE PARTY! チャレンジングなパーティです！';
+            }
+
+            const evaluationHTML = `
+                <div class="evaluation-section" style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; backdrop-filter: blur(5px);">
+                    <h3 style="color: #ffd700; margin-bottom: 10px;">🎯 パーティ相性評価</h3>
+                    <div style="font-size: 18px; font-weight: bold; color: #ffd700; margin-bottom: 15px;">${overallRating}</div>
+                    ${evaluation.comments.map(comment => `<div style="margin: 8px 0; padding: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 5px;">${comment}</div>`).join('')}
+                    <div style="margin-top: 15px; text-align: center;">
+                        <button onclick="showDetailedStrategy()" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer;">
+                            🎯 攻略のヒント
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.innerHTML += evaluationHTML;
+        }
+
+        function showDetailedStrategy() {
+            alert('🎯 攻略のコツ：\n\n• タンクは敵の注意を引きつけよう\n• ヒーラーは仲間の体力に注意\n• DPSは連携して大ダメージを狙おう\n• コミュニケーションが勝利の鍵！\n\n頑張って冒険を楽しんでください！ 🌟');
+        }
+
         // ジョブ割り当て実行関数
         function randomizeJobs() {
             if (!validateInputs()) {
@@ -590,26 +1088,70 @@
             // プレイヤー名を取得
             const playerNames = playerInputs.map(input => input.value.trim());
             
-            // プレイヤーをシャッフル
-            const shuffledPlayers = shuffleArray(playerNames);
+            // 各ロール（タンク、DPS×2、ヒーラー）にプレイヤーを割り当て
+            const roles = ['tank', 'dps1', 'dps2', 'healer'];
+            const shuffledPlayers = shuffleArray([0, 1, 2, 3]); // プレイヤーのインデックスをシャッフル
             
-            // ジョブをランダムに選択
-            const selectedTank = getRandomElement(jobs.tanks);
-            const selectedHealer = getRandomElement(jobs.healers);
+            const assignments = [];
             
-            // DPSは重複しないように2つ選択
-            const shuffledDPS = shuffleArray(jobs.dps);
-            const selectedDPS1 = shuffledDPS[0];
-            const selectedDPS2 = shuffledDPS[1];
+            // 各ロールに対してプレイヤーを割り当て
+            for (let i = 0; i < 4; i++) {
+                const playerIndex = shuffledPlayers[i];
+                const playerName = playerNames[playerIndex];
+                const role = roles[i];
+                
+                let availableJobs = [];
+                let selectedJob = '';
+                
+                if (role === 'tank') {
+                    availableJobs = playerJobSettings[playerIndex].tanks;
+                    selectedJob = getRandomElement(availableJobs);
+                } else if (role === 'healer') {
+                    availableJobs = playerJobSettings[playerIndex].healers;
+                    selectedJob = getRandomElement(availableJobs);
+                } else { // DPS
+                    availableJobs = playerJobSettings[playerIndex].dps;
+                    
+                    // DPSの場合、既に選ばれたDPSジョブと重複しないように選択
+                    let filteredJobs = availableJobs.filter(job => {
+                        return !assignments.some(assignment => assignment.job === job);
+                    });
+                    
+                    // フィルタした結果、選択肢がない場合は元の配列から選択
+                    if (filteredJobs.length === 0) {
+                        filteredJobs = availableJobs;
+                    }
+                    
+                    selectedJob = getRandomElement(filteredJobs);
+                }
+                
+                assignments.push({
+                    playerName: playerName,
+                    job: selectedJob,
+                    role: role
+                });
+            }
             
             // 結果を表示
-            displayResult(tankResult, shuffledPlayers[0], selectedTank);
-            displayResult(dps1Result, shuffledPlayers[1], selectedDPS1);
-            displayResult(dps2Result, shuffledPlayers[2], selectedDPS2);
-            displayResult(healerResult, shuffledPlayers[3], selectedHealer);
+            assignments.forEach(assignment => {
+                if (assignment.role === 'tank') {
+                    displayResult(tankResult, assignment.playerName, assignment.job);
+                } else if (assignment.role === 'dps1') {
+                    displayResult(dps1Result, assignment.playerName, assignment.job);
+                } else if (assignment.role === 'dps2') {
+                    displayResult(dps2Result, assignment.playerName, assignment.job);
+                } else if (assignment.role === 'healer') {
+                    displayResult(healerResult, assignment.playerName, assignment.job);
+                }
+            });
             
             // 結果セクションを表示
             resultsSection.style.display = 'block';
+            
+            // ジョブ相性評価を実行
+            const jobs = assignments.map(assignment => assignment.job);
+            const evaluation = evaluateCombo(jobs[0], jobs[1], jobs[2], jobs[3]);
+            displayEvaluation(evaluation);
             
             // 結果セクションにスクロール
             resultsSection.scrollIntoView({ 
@@ -631,6 +1173,23 @@
         logoutBtn.addEventListener('click', logout);
         randomizeBtn.addEventListener('click', randomizeJobs);
         resetBtn.addEventListener('click', resetResults);
+
+        // ジョブ設定モーダル関連のイベントリスナー
+        jobSettingsBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => openJobSettings(index));
+        });
+        
+        closeModal.addEventListener('click', closeJobSettingsModal);
+        selectAllBtn.addEventListener('click', selectAllJobs);
+        deselectAllBtn.addEventListener('click', deselectAllJobs);
+        saveJobSettings.addEventListener('click', saveCurrentJobSettings);
+        
+        // モーダルの外側をクリックしたときに閉じる
+        jobSettingsModal.addEventListener('click', (e) => {
+            if (e.target === jobSettingsModal) {
+                closeJobSettingsModal();
+            }
+        });
 
         // Enterキーでログインまたはジョブ割り当て実行
         passwordInput.addEventListener('keypress', (e) => {
