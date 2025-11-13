@@ -12,11 +12,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('./Pict/dungeon_entrance01.png'),
-                linear-gradient(135deg, #1e1e2e 0%, #2a2a4a 100%);
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+                url('./Pict/NCG266.jpg'),
+                linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -39,30 +39,31 @@
         }
 
         .login-box {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(30, 30, 30, 0.85);
             padding: 40px;
-            border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.4);
+            border-radius: 20px;
+            border: 3px solid #a8d5ba;
             backdrop-filter: blur(15px);
             text-align: center;
             width: 100%;
             max-width: 400px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(168, 213, 186, 0.3);
         }
 
         .login-box h2 {
-            color: #f0c040;
+            color: #a8d5ba;
             margin-bottom: 30px;
             font-size: 2em;
+            font-weight: 700;
         }
 
         .password-input {
             width: 100%;
             padding: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.3);
-            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #a8d5ba;
+            background: rgba(20, 20, 20, 0.7);
             color: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 18px;
             margin-bottom: 20px;
             text-align: center;
@@ -70,8 +71,8 @@
 
         .password-input:focus {
             outline: none;
-            border-color: #f0c040;
-            box-shadow: 0 0 10px rgba(240, 192, 64, 0.3);
+            border-color: #c8e6d0;
+            box-shadow: 0 0 15px rgba(168, 213, 186, 0.4);
         }
 
         .main-content {
@@ -82,8 +83,11 @@
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 10px;
-            color: #f0c040;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #a8d5ba 0%, #c8e6d0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
         }
 
         .subtitle {
@@ -94,19 +98,20 @@
         }
 
         .input-section {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(30, 30, 30, 0.85);
             padding: 30px;
-            border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.4);
+            border-radius: 20px;
+            border: 3px solid #a8d5ba;
             backdrop-filter: blur(15px);
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(168, 213, 186, 0.3);
         }
 
         .input-section h2 {
-            color: #f0c040;
+            color: #a8d5ba;
             margin-bottom: 20px;
             text-align: center;
+            font-weight: 700;
         }
 
         .name-inputs {
@@ -129,18 +134,18 @@
 
         input[type="text"] {
             padding: 12px 15px;
-            border: 2px solid rgba(240, 192, 64, 0.3);
-            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #a8d5ba;
+            background: rgba(20, 20, 20, 0.7);
             color: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 16px;
             transition: all 0.3s ease;
         }
 
         input[type="text"]:focus {
             outline: none;
-            border-color: #f0c040;
-            box-shadow: 0 0 10px rgba(240, 192, 64, 0.3);
+            border-color: #c8e6d0;
+            box-shadow: 0 0 15px rgba(168, 213, 186, 0.4);
         }
 
         .btn {
@@ -156,44 +161,47 @@
         }
 
         .btn.primary {
-            background: linear-gradient(45deg, #f0c040, #ffd700);
-            color: #1e1e2e;
+            background: linear-gradient(135deg, #88c9a1 0%, #a8d5ba 100%);
+            color: #1a1a1a;
             display: block;
             margin: 0 auto;
+            font-weight: 700;
         }
 
         .btn.primary:hover {
-            background: linear-gradient(45deg, #ffd700, #f0c040);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(240, 192, 64, 0.4);
+            background: linear-gradient(135deg, #a8d5ba 0%, #c8e6d0 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(168, 213, 186, 0.5);
         }
 
         .btn.secondary {
-            background: linear-gradient(45deg, #4a4a6a, #6a6a8a);
-            color: #fff;
+            background: linear-gradient(135deg, #7ab893 0%, #9ac9ad 100%);
+            color: #1a1a1a;
             display: block;
             margin: 20px auto 0;
+            font-weight: 700;
         }
 
         .btn.secondary:hover {
-            background: linear-gradient(45deg, #6a6a8a, #4a4a6a);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(106, 106, 138, 0.4);
+            background: linear-gradient(135deg, #9ac9ad 0%, #b4d9c4 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(122, 184, 147, 0.5);
         }
 
         .results-section {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(30, 30, 30, 0.85);
             padding: 30px;
-            border-radius: 15px;
-            border: 2px solid rgba(240, 192, 64, 0.4);
+            border-radius: 20px;
+            border: 3px solid #a8d5ba;
             backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(168, 213, 186, 0.3);
         }
 
         .results-section h2 {
-            color: #f0c040;
+            color: #a8d5ba;
             margin-bottom: 25px;
             text-align: center;
+            font-weight: 700;
         }
 
         .assignments {
@@ -202,9 +210,9 @@
         }
 
         .assignment {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(20, 20, 20, 0.6);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             border: 2px solid;
         }
 
@@ -278,7 +286,7 @@
 
         .job-name {
             font-size: 16px;
-            color: #f0c040;
+            color: #a8d5ba;
             font-weight: bold;
         }
 
@@ -293,17 +301,20 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(231, 76, 60, 0.8);
-            color: white;
+            background: rgba(168, 213, 186, 0.9);
+            color: #1a1a1a;
             border: none;
             padding: 10px 15px;
-            border-radius: 5px;
+            border-radius: 15px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
         }
 
         .logout-btn:hover {
-            background: rgba(231, 76, 60, 1);
+            background: rgba(200, 230, 208, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(168, 213, 186, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -359,20 +370,22 @@
 
         /* ジョブ設定ボタン */
         .job-settings-btn {
-            background: linear-gradient(45deg, #6a5acd, #9370db);
-            color: white;
+            background: linear-gradient(135deg, #7ab893 0%, #9ac9ad 100%);
+            color: #1a1a1a;
             border: none;
             padding: 8px 15px;
-            border-radius: 5px;
+            border-radius: 12px;
             font-size: 12px;
             cursor: pointer;
             margin-top: 8px;
             transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .job-settings-btn:hover {
-            background: linear-gradient(45deg, #9370db, #6a5acd);
-            transform: translateY(-1px);
+            background: linear-gradient(135deg, #9ac9ad 0%, #b4d9c4 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 184, 147, 0.4);
         }
 
         /* モーダル */
@@ -389,17 +402,17 @@
         }
 
         .modal-content {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(30, 30, 30, 0.95);
             margin: 5% auto;
             padding: 0;
-            border: 2px solid rgba(240, 192, 64, 0.4);
-            border-radius: 15px;
+            border: 3px solid #a8d5ba;
+            border-radius: 20px;
             width: 90%;
             max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
             backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 50px rgba(168, 213, 186, 0.3);
             animation: slideIn 0.3s ease-out;
         }
 
@@ -419,18 +432,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 30px;
-            border-bottom: 1px solid rgba(240, 192, 64, 0.2);
+            border-bottom: 2px solid #a8d5ba;
         }
 
         .modal-header h3 {
-            color: #f0c040;
+            color: #a8d5ba;
             margin: 0;
+            font-weight: 700;
         }
 
         .close-btn {
             background: none;
             border: none;
-            color: #f0c040;
+            color: #a8d5ba;
             font-size: 24px;
             cursor: pointer;
             padding: 0;
@@ -444,7 +458,7 @@
         }
 
         .close-btn:hover {
-            background: rgba(240, 192, 64, 0.2);
+            background: rgba(168, 213, 186, 0.15);
         }
 
         .modal-body {
@@ -456,9 +470,9 @@
         }
 
         .notice-box {
-            background: rgba(255, 193, 7, 0.1);
-            border: 2px solid rgba(255, 193, 7, 0.3);
-            border-radius: 8px;
+            background: rgba(168, 213, 186, 0.15);
+            border: 2px solid #a8d5ba;
+            border-radius: 12px;
             padding: 15px;
             display: flex;
             align-items: flex-start;
@@ -472,7 +486,7 @@
         }
 
         .notice-text {
-            color: #ffc107;
+            color: #c8e6d0;
             font-size: 14px;
             line-height: 1.5;
         }
@@ -486,9 +500,10 @@
         }
 
         .job-category h4 {
-            color: #f0c040;
+            color: #a8d5ba;
             margin-bottom: 15px;
             font-size: 18px;
+            font-weight: 700;
         }
 
         .job-checkboxes {
@@ -573,6 +588,15 @@
                 padding: 6px 12px;
                 font-size: 11px;
             }
+        }
+
+        /* フッタークレジット */
+        .footer-credit {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #ffffff;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -706,6 +730,11 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <!-- フッタークレジット -->
+    <div style="text-align: center; padding: 30px 20px; margin-top: 20px;">
+        <div style="color: #ffffff; font-size: 14px; font-weight: bold;">イラスト/ノーコピーライトガール</div>
     </div>
 
     <script>

@@ -71,5 +71,8 @@
 const CORRECT_PASSWORD = 'your-new-password';
 ```
 
+## クレジット
+背景画像: [ノーコピーライトガール](https://nocopyright-girl.com/)
+
 ---
 Created for MMO game players
